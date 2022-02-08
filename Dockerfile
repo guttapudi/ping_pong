@@ -1,4 +1,4 @@
-FROM asia-southeast1-docker.pkg.dev/rational-terra-336303/ping-pong-docker-repo/tomcat-base-img:latest
+FROM asia-southeast1-docker.pkg.dev/rational-terra-336303/ping-pong-docker-repo/tomcat-maven-img:latest
 WORKDIR /app/
 COPY pom.xml .
 COPY src/ src
