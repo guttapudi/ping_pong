@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RestController {
 	@GetMapping("/ping")
 	public String ping() {
-		return "pong";
+		return "ponged";
 	}
 }
