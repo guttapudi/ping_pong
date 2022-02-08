@@ -1,0 +1,18 @@
+steps:
+  # build the container image
+- name: "gcr.io/cloud-builders/docker"
+  id: "build-ping-pong-app-image"
+  args: ["build", "-t", "asia-southeast1-docker.pkg.dev/rational-terra-336303/ping-pong-docker-repo/ping-pong-app", "."]
+  # push container image
+- name: "gcr.io/cloud-builders/docker"
+  id: "push-ping-pong-app-image"
+  args: ["push", "asia-southeast1-docker.pkg.dev/rational-terra-336303/ping-pong-docker-repo/ping-pong-app"]
+  # deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  id: "deploy-ping-pong-app-to-gke"
+  args: 
+  - run
+  - --filename=k8s_resources/
+  - --image=asia-southeast1-docker.pkg.dev/rational-terra-336303/ping-pong-docker-repo/ping-pong-app:latest
+  - --location=us-central1
+  - --cluster=autopilot-cluster-1
